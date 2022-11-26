@@ -1,9 +1,7 @@
 """
 Clasificación usando k-NN - Digits Dataset
 -----------------------------------------------------------------------------------------
-
 En este laboratio se construirá un clasificador usando k-NN para el dataset de digitos.
-
 """
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,20 +15,17 @@ def pregunta_01():
     """
 
     # Cargue el dataset digits
-    digits = datasets.load_digits(return_X_y=False)
+    digits = datasets.load_digits()
 
     # Imprima los nombres de la variable target del dataset
     print(digits.target_names)
 
-    # Imprima las dimensiones de matriz de datos
+    # Imprima las dimensinoes de matriz de datos
     print(digits.data.shape)
 
     # Imprima las dimensiones del vector de salida
-
     print(digits.target.shape)
-    plt.gray()
-    plt.matshow(digits.images[2])
-    plt.show()
+
 
 def pregunta_02():
     """
@@ -43,17 +38,18 @@ def pregunta_02():
     from sklearn.model_selection import train_test_split
 
     # Cargue el dataset digits
-    digits = datasets.load_digits(return_X_y=True)
+    digits = datasets.load_digits()
 
     # Cree los vectors de características y de salida
-    X = digits[0]
-    y = digits[1]
+    X = digits.data
+    y = digits.target
 
     # Divida los datos de entrenamiento y prueba. Los conjuntos de datos están
     # estratificados. La semilla del generador de números aleatorios es 42.
-    # El tamaño del test es del 20%
+    # El tamaño del test es del 20%
     X_train, X_test, y_train, y_test = train_test_split(
-       X, y, test_size=0.2, random_state=42, stratify=y  )
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
 
     # Cree un clasificador con siete vecinos
     knn = KNeighborsClassifier(n_neighbors=7)
@@ -66,7 +62,6 @@ def pregunta_02():
 
 
 def pregunta_03():
-
     """
     Complete el código presentado a continuación.
     """
@@ -78,18 +73,18 @@ def pregunta_03():
     from sklearn.model_selection import train_test_split
 
     # Cargue el dataset digits
-    digits = datasets.load_digits(return_X_y=True)
+    digits = datasets.load_digits()
 
     # Cree los vectors de características y de salida
-    X = digits[0]
-    y = digits[1]
+    X = digits.data
+    y = digits.target
+
 
     # Divida los datos de entrenamiento y prueba. Los conjuntos de datos están
     # estratificados. La semilla del generador de números aleatorios es 42.
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
-
     # Inicialice los arreglos para almacenar la precisión para las muestras de
     # entrenamiento y de prueba
     neighbors = np.arange(1, 9)
@@ -99,10 +94,10 @@ def pregunta_03():
     # Se itera sobre diferentes valores de vecinos
     for i, k in enumerate(neighbors):
         # Cree un clasificador con k vecinos
-        knn = KNeighborsClassifier(n_neighbors=k)
+        knn =  KNeighborsClassifier(n_neighbors=k)
 
         # Entrene el clasificador con los datos de entrenamiento
-        knn.fit(X_train, y_train)
+        knn.fit(X_train,y_train)
 
         # Calcule la precisión para el conjunto de datos de entrenamiento
         train_accuracy[i] = knn.score(X_train, y_train)
