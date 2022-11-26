@@ -14,7 +14,6 @@ from sklearn import datasets
 def pregunta_01():
     """
     Complete el código presentado a continuación.
-    
     """
 
     # Cargue el dataset digits
@@ -25,7 +24,7 @@ def pregunta_01():
 
     # Imprima las dimensinoes de matriz de datos
     print(digits.data.shape)
-    
+
     # Imprima las dimensiones del vector de salida
     print(digits.target.shape)
 
@@ -49,13 +48,13 @@ def pregunta_02():
 
     # Divida los datos de entrenamiento y prueba. Los conjuntos de datos están
     # estratificados. La semilla del generador de números aleatorios es 42.
-    # El tamaño del test es del 20%
+    # El tamaño del test es del 20%
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
 
     # Cree un clasificador con siete vecinos
-    knn = KNeighborsClassifier(n_neighbors = 7)
+    knn = KNeighborsClassifier(n_neighbors=7)
 
     # Entrene el clasificador
     knn.fit(X_train, y_train)
@@ -66,7 +65,6 @@ def pregunta_02():
 
 def pregunta_03():
     """
-    
     Complete el código presentado a continuación.
     """
 
@@ -98,7 +96,7 @@ def pregunta_03():
     # Se itera sobre diferentes valores de vecinos
     for i, k in enumerate(neighbors):
         # Cree un clasificador con k vecinos
-        knn = KNeighborsClassifier(n_neighbors = k)
+        knn = KNeighborsClassifier(n_neighbors=k)
 
         # Entrene el clasificador con los datos de entrenamiento
         knn.fit(X_train, y_train)
